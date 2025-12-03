@@ -208,23 +208,25 @@ s3_download(
         # user_name=data_model_reg_cfg['clearml_username'],
     )
 
-absolute_path = Path(__file__).parent / "dataset" / config["dataset_config"]["source"]
+config["dataset_config"]["source"] = s3_download
 
-files = list(absolute_path.rglob("*.[jc][so][nv]*"))  # matches .json or .csv
+# absolute_path = Path(__file__).parent / "dataset" / config["dataset_config"]["source"]
 
-# Or, more explicitly:
-files = [f for f in absolute_path.rglob("*") if f.suffix in [".json", ".csv"]]
+# files = list(absolute_path.rglob("*.[jc][so][nv]*"))  # matches .json or .csv
 
-# Print absolute paths
-for file_path in files:
-    print(file_path.resolve())
-    file_path = file_path.resolve()
+# # Or, more explicitly:
+# files = [f for f in absolute_path.rglob("*") if f.suffix in [".json", ".csv"]]
 
-# Connect hyperparameters and other configurations to the ClearML task
+# # Print absolute paths
+# for file_path in files:
+#     print(file_path.resolve())
+#     file_path = file_path.resolve()
+
+# # Connect hyperparameters and other configurations to the ClearML task
 
 
 
-config["dataset_config"]["source"] = file_path
+# config["dataset_config"]["source"] = file_path
 
 
 trainer = AutoTrainer(config=config)
